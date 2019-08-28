@@ -92,19 +92,51 @@ plt.contourf(my1,escala_my) #hasta 199 porque en la derivacion diff se fue un x
 plt.title("My K1")
 plt.colorbar()
 plt.savefig("ej1_my1", dpi=200)
+plt.show()
 
 plt.figure()
 plt.contourf(my2,escala_my) #hasta 199 porque en la derivacion diff se fue un x 
 plt.title("My K2")
 plt.colorbar()
 plt.savefig("ej1_my2", dpi=200)
+plt.show()
 
 plt.figure()
 plt.contourf(my3,escala_my) #hasta 199 porque en la derivacion diff se fue un x 
 plt.title("My K3")
 plt.colorbar()
 plt.savefig("ej1_my3", dpi=200)
+plt.show()
+"""por si no funciona, agregué esto
+plt.contourf(X1,Y1,corriente1)
+plt.colorbar(levels)
+plt.title('Funcion corriente 1')
+plt.xlabel('Longitud')
+plt.ylabel('Latitud')
+plt.xticks(np.arange(0,4000000,1000000))
 
+#plt.savefig('Campo de funcion corriente1.png')
+plt.show()
+
+plt.contourf(X2,Y2,corriente2)
+plt.colorbar()
+plt.title('Funcion corriente 2')
+plt.xlabel('Longitud')
+plt.ylabel('Latitud')
+plt.xticks(np.arange(0,4000000,1000000))
+
+#plt.savefig('Campo de funcion corriente2.png')
+plt.show()
+
+plt.contourf(X3,Y3,corriente3)
+plt.colorbar()
+plt.title('Funcion corriente 3')
+plt.xlabel('Longitud')
+plt.ylabel('Latitud')
+plt.xticks(np.arange(0,4000000,1000000))
+#plt.savefig('Campo de funcion corriente3.png')
+plt.show()
+"""
 #corte zonal en la latitud central de la cuenca-->y=50 ESTA BIEN??? my[:,50] o[[ my1[50,:] ]], si arrays de cargar.py (y,x)
 plt.figure()
 plt.plot(my1[50,:],label="K1")
@@ -115,7 +147,7 @@ plt.xlabel("km")
 plt.title("Transporte meridional")
 plt.legend()
 plt.savefig("transporte_meridional", dpi=200)
-
+plt.show()
 
 #lo mismo con la vorticidad
 plt.figure()
@@ -127,7 +159,7 @@ plt.title("Vorticidad relativa")
 plt.ylabel("vort. relativa")
 plt.legend()
 plt.savefig("vorticidad_relativa", dpi=200)
-
+plt.show()
 ###----------------2----------------###
 #my pero de la cbo
 #buscado a mano... my[50,:], cambia de signo en 22°
@@ -171,3 +203,16 @@ ej_2 = pd.DataFrame(data=ej_2)
 ej_2.to_excel("ej_2.xls",index = False)
 
 ###----------------3----------------###
+#ejercicio 3
+"""adimensionalizamos rotor del viento, función de corriente y fricción """
+v= np.diff(corriente2,n=1,axis=-1)
+rotorviento= QG_curlw2*Tau*-1
+friccion= eps3*vortF2*(beta*L)
+ef=K2/(beta*(L**2))
+corriente= corriente2*ef
+plt.plot(vortF2[50,:],'r',label='rotor de viento')
+plt.plot(QG_curlw2[50,:],'m',label='fricción')
+plt.plot(v[50,:],'c',label='función corriente')
+plt.legend()
+
+plt.show()
