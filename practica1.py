@@ -109,7 +109,7 @@ plt.savefig("ej1_my3", dpi=200)
 plt.show()
 """por si no funciona, agregué esto
 plt.contourf(X1,Y1,corriente1)
-plt.colorbar(levels)
+plt.colorbar()
 plt.title('Funcion corriente 1')
 plt.xlabel('Longitud')
 plt.ylabel('Latitud')
