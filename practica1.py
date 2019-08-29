@@ -40,13 +40,14 @@ vort3 = vortF3*(U/Lx)
 
 # Energia cinetica. (no la dimensionalizamos)
 plt.figure()
-plt.plot(QG_diag1[:,3],label='K1')
-plt.plot(QG_diag2[:,3],label="K2")
-plt.plot(QG_diag3[:,3],label="K3")
-plt.title("Energia Cinetica")
-plt.xlabel("tiempo")
-plt.ylabel("Energia cinetica")
+plt.plot(QG_diag1[:,3],'r',label='K1')
+plt.plot(QG_diag2[:,3],'g',label="K2")
+plt.plot(QG_diag3[:,3],'b',label="K3")
+plt.title("Energia Cinética")
+plt.xlabel("Tiempo")
+plt.ylabel("Energia cinética")
 plt.legend()
+plt.tight_layout()
 plt.savefig("energia_cin.png",dpi=200)
 
 
@@ -64,6 +65,7 @@ for i in num:
     plt.title(titulo_c[i])
     plt.xlabel(nombres_c[i])
     plt.xticks(np.arange(0,4000000,1000000))
+    plt.tight_layout()
     plt.savefig(nombres_c[i],dpi=200)
     
 # transporte meridional, en Sverdrups
@@ -86,6 +88,7 @@ for x in num:
     plt.xlabel('Longitud')
     plt.ylabel('Latitud')
     plt.xticks(np.arange(0,4000000,1000000))
+    plt.tight_layout()
     plt.savefig(nombres[x],dpi=200)
 
 # corte zonal en la latitud central de la cuenca
@@ -99,6 +102,7 @@ plt.ylabel("My")
 plt.xlabel("km")
 plt.title("Transporte meridional")
 plt.legend()
+plt.tight_layout()
 plt.savefig("transporte_meridional", dpi=200)
 
 
@@ -111,6 +115,7 @@ plt.xlabel("Km")
 plt.title("Vorticidad relativa")
 plt.ylabel("vort. relativa")
 plt.legend()
+plt.tight_layout()
 plt.savefig("vorticidad_relativa", dpi=200)
 
 ###----------------2----------------###
@@ -174,13 +179,14 @@ termino2 = -QG_curlw2[50,:]
 termino3 = 0.79*vortF2[50,:]  # 0.79 valor del eps 2
 
 plt.figure()
-plt.plot(termino1,"c",label = "Termino de Transporte")
-plt.plot(termino2,"r",label = "Termino del Rotor de viento")
-plt.plot(termino3,"m",label = "Termino de fricción")
+plt.plot(termino1,"c",label = "Término de Transporte")
+plt.plot(termino2,"r",label = "Término del Rotor de viento")
+plt.plot(termino3,"m",label = "Término de fricción")
 plt.axhline(y = 0, color = "black") # marco la linea de y = 0
 plt.xlabel("X")
-plt.ylabel("valores adimencionales")
+plt.ylabel("valores adimensionales")
 plt.legend()
+plt.tight_layout()
 plt.savefig("ej_3.png",dpi = 200)
 
 ### LAS UNIDADES QUEDAN RARAS, MUY GRANDES, RESPETAMOS TOMAR TODO EN METROS
