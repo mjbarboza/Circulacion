@@ -183,6 +183,14 @@ plt.ylabel("valores adimencionales")
 plt.legend()
 plt.savefig("ej_3.png",dpi = 200)
 
+prom1=np.mean(termino1)
+prom2=np.mean(termino2)
+prom3=np.mean(termino3)
+
+stommel=prom1+prom2+prom3
+error = (abs(0 -stommel))*100
+print(f'El error asociado es {error} %')
+
 ### LAS UNIDADES QUEDAN RARAS, MUY GRANDES, RESPETAMOS TOMAR TODO EN METROS
 ### DESDE EL CALCULO DE BETA, LOS VALORES INGRESADOS EN LA FUNCION CAGAR Y LAS CONVERSIONES
 
