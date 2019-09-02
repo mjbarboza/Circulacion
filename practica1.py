@@ -67,9 +67,9 @@ for i in num:
     plt.savefig(nombres_c[i],dpi=200)
     
 # transporte meridional, en Sverdrups
-my1 = D*Lx/(nx)*(np.diff(corriente1,n=1,axis=1))/10**6
-my2 = D*Lx/(nx)*(np.diff(corriente2,n=1,axis=1))/10**6
-my3 = D*Lx/(nx)*(np.diff(corriente3,n=1,axis=1))/10**6
+my1 = D*(np.diff(corriente1,n=1,axis=1))/10**6
+my2 = D*(np.diff(corriente2,n=1,axis=1))/10**6
+my3 = D*(np.diff(corriente3,n=1,axis=1))/10**6   #sacando Lx/dx--> no dan unidades sino y ya esta dimensionalizado 
 
 # campos de transporte meridional
 escala_my = np.arange(-3200000,800000,400000) #escala para los graficos 
