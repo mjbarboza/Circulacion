@@ -91,7 +91,7 @@ plt.ylabel("Energia cinetica")
 plt.legend(loc = "lower right")
 #plt.axvline(x = iteraciones[0], color = "r")
 #plt.axvline(x = iteraciones[1], color = "orange")     #
-#plt.axvline(x = iteraciones[2], color = "yellow")     #ponemos esto?? lineas verticales marcando 
+#plt.axvline(x = iteraciones[2], color = "yellow")     #ponemos esto?? DEFINITIVAMENTE lineas verticales marcando 
 #plt.axvline(x = iteraciones[3], color = "b")          # el tiempo donde se alcanza el estado estacionario
 #plt.axvline(x = iteraciones[4], color = "purple")
 plt.savefig("energia_cin.png",dpi=200)
@@ -137,6 +137,7 @@ for i in num:
     plt.tight_layout()
     plt.show()
     #plt.savefig(nombres_v[i],dpi=200,format=png)
+
 #ejercicio 4
 
 #corte zonal en latitud central de la cuenca   
@@ -208,18 +209,41 @@ my_cbo1=my1[25,:] # latitud (y) primera coordenada del array numero 25(centro de
 my_cbo1_F=np.sum(my_cbo1[0:])
 my_cbo1_total=np.sum(my_cbo1) # esto ya estaba en sv
 extension_cbo1=X1[7]
-"""chequear desde acá
-np.where(my2[25,:]==0)  #---> dos posiciones 46 y 49, viendo la matriz tiene valor 0 -algo + ese mismo algo 0, elijo 49
+###----------------4---------------###
+# my pero de la cbo
+# buscado a mano... my[50,:], cambia de signo en 7<-- extensión de la cbo
+# esto tambien funca ---> np.where(my1[25,:]==0) ni idea de como funcionan  
+# hay q buscar donde cambia de signo, puede q no existan ceros ya q no es continuo
+#Los busco manualmente
+ #cambio de signo en 7
+my_cbo1=my1[25,:] # latitud (y) primera coordenada del array numero 25(centro de la cuenca)
+my_cbo1_F=np.sum(my_cbo1[0:7])
+my_cbo1_total=np.sum(my_cbo1) # esto ya estaba en sv
+extension_cbo1=X1[7]
+
+ #---> cambio de signo en 6
 my_cbo2=my2[25,:]
 my_cbo2_F=np.sum(my_cbo2[0:6])
 my_cbo2_total=np.sum(my_cbo2) 
-extension_cbo2=X2[49,]
+extension_cbo2=X2[6]
 
-np.where(my3[50,:]==0)  #---> varias posiciones, elijo la ultima 66 \m/
-my_cbo3=my3[50,:] 
-my_cbo3_F=np.sum(my_cbo3[0:66])
+ #---> cambio de signo en 5
+my_cbo3=my3[25,:] 
+my_cbo3_F=np.sum(my_cbo3[0:5])
 my_cbo3_total=np.sum(my_cbo3) 
-extension_cbo3=X3[66,]
+extension_cbo3=X3[5]
+
+#---> cambio de signo en 4
+my_cbo4=my4[25,:] 
+my_cbo4_F=np.sum(my_cbo4[0:4])
+my_cbo4_total=np.sum(my_cbo4) 
+extension_cbo4=X4[4]
+
+#---> cambio de signo en 2
+my_cbo5=my5[25,:] 
+my_cbo5_F=np.sum(my_cbo5[0:2])
+my_cbo5_total=np.sum(my_cbo5) 
+extension_cbo5=X5[2]
 
 # hay q presentarlo como tabla --> guardamos en excel usando:
 # import pandas
@@ -232,16 +256,18 @@ import pandas as pd
 # solo rendondeo del total ya que da con ordenes 10^-7 pero no cero
 # el transporte de borde oste no hace falta
 
-ej_2 = {" " : ["My borde oeste","My total","Extension cbo"],
+ej_4 = {" " : ["My borde oeste","My total","Extension cbo"],
         "K1":[(my_cbo1_F),round(my_cbo1_total),extension_cbo1],
         "K2":[(my_cbo2_F),round(my_cbo2_total),extension_cbo2],
-        "K3":[(my_cbo3_F),round(my_cbo2_total),extension_cbo3]}
+        "K3":[(my_cbo3_F),round(my_cbo3_total),extension_cbo3],
+        "K4":[(my_cbo4_F),round(my_cbo4_total),extension_cbo4],
+        "K5":[(my_cbo5_F),round(my_cbo5_total),extension_cbo5],}
 
 # ahora pasado a un dataframe, los caracteres pasan a las filas y columnas
-ej_2 = pd.DataFrame(data=ej_2)
-ej_2.to_excel("ej_2.xls",index = False)
-
-###----------------3----------------###
+ej_4 = pd.DataFrame(data=ej_3)
+ej_4.to_excel("ej_4.xls",index = False)
+"""chequear todo esto 
+###----------------5----------------###
 
 ## elegimos la simulacion 2 ##
 # en forma adimencional 
