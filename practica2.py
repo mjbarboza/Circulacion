@@ -125,12 +125,12 @@ for i in num:
 vort_rel = (vort1,vort2,vort3,vort4,vort5)
 esc_v = np.arange(-0.000007,0.000041,0.00000002)
 esc_v = np.arange(-0.000012,0.000041,0.0000001) #ojo con esta escala,dan muy extraños
-nombres_v = ("Vort. rel. 1","Vort. rel. 2","Vort. rel. 3","Vort. rel. 4","Vort. rel. 5")
+nombres_v = ("Vort_rel_1","Vort_rel_2","Vort_rel_3","Vort_rel_4","Vort_rel_5")  ###
 Tit_v = ("Vort. rel. 1","Vort. rel. 2","Vort. rel. 3","Vort. rel. 4","Vort. rel. 5")
 #ojo no está guardando los graficos, y la escala no está como debería
 for i in num:
     plt.figure()
-    plt.contour(X1,Y1,vort_rel[i],esc_v,cmap='winter') 
+    plt.contour(X1,Y1,vort_rel[i],esc_v,cmap="jet")  #modifico escala para que se vea mejor la diferencia entre + y -
     plt.colorbar()
     plt.title(Tit_v[i])
     plt.xlabel('longitud')
@@ -138,8 +138,8 @@ for i in num:
     plt.grid()
     plt.xticks(np.arange(0,1000000,300000))
     plt.tight_layout()
-    plt.show()
-    #plt.savefig(nombres_v[i],dpi=200,format=png)
+    plt.savefig(nombres_v[i],dpi=200)    #saque algunas cosas porque no dejaba guardar, entre ellas el nombre ###
+   
 #ejercicio 4
 
 #corte zonal en latitud central de la cuenca   
