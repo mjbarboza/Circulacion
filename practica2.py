@@ -41,11 +41,11 @@ vort5 = vortF5*(U/Lx)
 
 # Energia cinetica. (no la dimensionalizamos)
 plt.figure()
-plt.plot(QG_diag1[:,3],'r',label='K1')
-plt.plot(QG_diag2[:,3],'g',label="K2")
-plt.plot(QG_diag3[:,3],'b',label="K3")
-plt.plot(QG_diag4[:,3],'m',label="K4")
-plt.plot(QG_diag5[:,3],'c',label="K5")
+plt.plot(QG_diag1[:,3],'r',label='Ev1')
+plt.plot(QG_diag2[:,3],'g',label="Ev2")
+plt.plot(QG_diag3[:,3],'b',label="Ev3")
+plt.plot(QG_diag4[:,3],'m',label="Ev4")
+plt.plot(QG_diag5[:,3],'c',label="Ev5")
 plt.title("Energia Cinética")
 plt.grid()
 plt.xlabel("Tiempo")
@@ -106,7 +106,7 @@ plt.savefig("energia_cin1.png",dpi=200)
 #pide isolíneas
 corrientes = (corriente1,corriente2,corriente3,corriente4,corriente5)
 nombres_c = ("corriente1","corriente2","corriente3","corriente4","corriente5")
-titulo_c = ("Corriente K1", "Corriente K2", "Corriente K3","Corriente K4", "Corriente K5")
+titulo_c = ("Corriente Ev1_1", "Corriente Ev1_2", "Ev1_3","Corriente Ev1_4", "Corriente Ev1_5")
 num = (0,1,2,3,4)
 
 for i in num:
@@ -154,8 +154,8 @@ my5 = D*(np.diff(corriente5,n=1,axis=1))/(10**6)
 escala_my = np.arange(-1380,290,50) #escala para los graficos 
 # --> quedan valores de -1380 a 270 Sv, es bastante pero no tanto como la vez anterior
 my = (my1,my2,my3,my4,my5)
-nombres = ("ej1_my1","ej1_my2","ej1_my3","ej1_my4","ej1_my5")
-titulo= ("My K1","My K2", "My K3", "My K4", "My K5")
+nombres = ("ej1_ev1","ej1_ev2","ej1_ev3","ej1_ev4","ej1_ev5")
+titulo= ("My Ev1_1","My Ev1_2", "My Ev1_3", "My Ev1_4", "My Ev1_5")
 
 for x in num:
     plt.figure()                    
@@ -171,11 +171,11 @@ for x in num:
 # corte zonal en la latitud central de la cuenca
 
 plt.figure()
-plt.plot(my1[25,:],'r',label="K1")
-plt.plot(my2[25,:],'g',label="K2")
-plt.plot(my3[25,:],'b',label="K3")
-plt.plot(my4[25,:],'m',label="K4")
-plt.plot(my5[25,:],'c',label="K5")
+plt.plot(my1[25,:],'r',label="Ev1_1")
+plt.plot(my2[25,:],'g',label="Ev1_2")
+plt.plot(my3[25,:],'b',label="Ev1_3")
+plt.plot(my4[25,:],'m',label="Ev1_4")
+plt.plot(my5[25,:],'c',label="Ev1_5")
 plt.plot(my5[0,:],'k-.')
 plt.ylabel("My[Sv]")
 plt.xlabel("Latitud[km]")
@@ -187,11 +187,11 @@ plt.savefig("transporte_meridional", dpi=200)
 
 # lo mismo con la vorticidad
 plt.figure()
-plt.plot(X1[0:100]/1000,vort1[25,:],'r', label = "K1") #dividido 1000 para que de en km
-plt.plot(X1[0:100]/1000,vort2[25,:],'g', label = "K2") 
-plt.plot(X1[0:100]/1000,vort3[25,:],'b', label = "K3")
-plt.plot(X1[0:100]/1000,vort4[25,:],'c', label = "K4") 
-plt.plot(X1[0:100]/1000,vort5[25,:],'m', label = "K5")  
+plt.plot(X1[0:100]/1000,vort1[25,:],'r', label = "Ev1_1") #dividido 1000 para que de en km
+plt.plot(X1[0:100]/1000,vort2[25,:],'g', label = "Ev1_2") 
+plt.plot(X1[0:100]/1000,vort3[25,:],'b', label = "Ev1_3")
+plt.plot(X1[0:100]/1000,vort4[25,:],'c', label = "Ev1_4") 
+plt.plot(X1[0:100]/1000,vort5[25,:],'m', label = "Ev1_5")  
 plt.plot(vort1[0,:],'k-.')
 plt.xlabel("Latitud[Km]")
 plt.title("Vorticidad relativa")
@@ -268,7 +268,7 @@ termino2 = -QG_curlw1[26,:] # porque tiene 52...
 
 # laplaciano
 from laplaciano import Calc_del2
-lapla = Calc_del2(vort_temp1[:,:,0],0.1)
+lapla = Calc_del2(vortF1,0.1)
 
 # tercer termino # 0.79 valor del eps 2
 termino3 =  -0.025*lapla[25,:]
