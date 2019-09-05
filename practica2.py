@@ -271,7 +271,7 @@ from laplaciano import Calc_del2
 lapla = Calc_del2(vortF1,0.1)
 
 # tercer termino # 0.79 valor del eps 2
-termino3 =  -0.025*lapla[25,:]
+termino3 =  -0.025*lapla[25,:]/0.1   # divido por ds
 
 plt.figure()
 plt.plot(termino1,"c",label = "Termino de Transporte")
