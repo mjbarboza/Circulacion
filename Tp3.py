@@ -14,7 +14,7 @@ Lx = 1500000 # dimensiones de la cuenca en metros
 Ly = 1500000
 nx = 150 # puntos de grilla
 ny = 150
-beta = 10**-11 # en metros
+beta = 2*10**-11 # en metros
 D = 2000 # metros
 
 from Cargar import cargar 
@@ -66,10 +66,10 @@ plt.plot(QG_diag2[:,3], label="S2", color = "orange") # s1 y s3 iguales ya chequ
 plt.plot(QG_diag3[:,3], label="S3", color = "green")
 plt.plot(QG_diag4[:,3], label="S4", color = "b")
 plt.plot(QG_diag5[:,3], label="S5", color = "purple")
-plt.title("Energia Cinetica")
+plt.title("Energía Cinética")
 plt.grid()
-plt.xlabel("tiempo")
-plt.ylabel("Energia cinetica")
+plt.xlabel("Tiempo")
+plt.ylabel("Energía cinética")
 plt.legend(loc = "lower right")
 plt.savefig("energia_cin.png",dpi=200)
 
@@ -84,7 +84,6 @@ plt.plot(QG_diag5[:,3], label="S5", color = "purple")
 plt.plot(QG_diagx[:,3], label="S E.I", color = "violet")   #interesante resultado!! (esperable?? no hay friccion lateral)
 plt.plot(QG_diagx[:,3], label="S E.I 2", color = "black")  # practicamente identico al anterior
 plt.title("Energía Cinética")
-plt.grid()
 plt.xlabel("tiempo")
 plt.ylabel("Energía cinética")
 plt.legend(loc = "lower right")
@@ -95,7 +94,7 @@ plt.savefig("energia_cin_EI.png",dpi=200)
 
 corrientes = (corriente1 ,corriente2, corriente3, corriente4, corriente5)
 nombres_c = ("corriente1","corriente2","corriente3","corriente4","corriente5")
-titulo_c = ("Corriente S1", "Corriente S2", "Corriente S3","Corriente S4", "Corriente S5")
+titulo_c = ("$/psi$ S1", "$/psi$ S2", "$/psi$ S3","$/psi$ S4", "$/psi$ S5")
 num = (0,1,2,3,4)
 escala = np.arange(-0.8, 0.2, 0.1) 
 
