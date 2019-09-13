@@ -14,7 +14,7 @@ Lx = 4000000 # dimenciones de la cuenca en metros
 Ly = 2000000
 nx = 200 # puntos de grilla
 ny = 100
-beta = 10**-11 # en metros
+beta = 2*10**-11 # en metros
 D = 2000 # metros
 
 #arrays (y,x) !
@@ -43,9 +43,9 @@ plt.figure()
 plt.plot(QG_diag1[:,3],label='K1')
 plt.plot(QG_diag2[:,3],label="K2")
 plt.plot(QG_diag3[:,3],label="K3")
-plt.title("Energia Cinetica")
+plt.title("Energía Cinética")
 plt.xlabel("tiempo")
-plt.ylabel("Energia cinetica")
+plt.ylabel("Energía cinética")
 plt.legend()
 plt.savefig("energia_cin.png",dpi=200)
 
@@ -54,7 +54,7 @@ plt.savefig("energia_cin.png",dpi=200)
 escala = np.arange(-420000,60000,70000)
 corrientes = (corriente1,corriente2,corriente3)
 nombres_c = ("corriente1","corriente2","corriente3")
-titulo_c = ("Corriente K1", "Corriente K2", "Corriente K3")
+titulo_c = ("$\psi$ K1", "$\psi$ K2", "$\psi$ K3")
 num = (0,1,2)
 
 for i in num:
@@ -174,12 +174,12 @@ termino2 = -QG_curlw2[50,:]
 termino3 = 0.79*vortF2[50,:]  # 0.79 valor del eps 2
 
 plt.figure()
-plt.plot(termino1,"c",label = "Termino de Transporte")
-plt.plot(termino2,"r",label = "Termino del Rotor de viento")
-plt.plot(termino3,"m",label = "Termino de fricción")
+plt.plot(termino1,"c",label = "Termino de Transporte")#$\beta$v
+plt.plot(termino2,"r",label = "Termino del Rotor de viento")#$\nabla\times\tau_{s}$
+plt.plot(termino3,"m",label = "Termino de fricción")#no recuerdo cual es
 plt.axhline(y = 0, color = "black") # marco la linea de y = 0
 plt.xlabel("X")
-plt.ylabel("valores adimencionales")
+plt.ylabel("valores adimensionales")
 plt.legend()
 plt.savefig("ej_3.png",dpi = 200)
 
