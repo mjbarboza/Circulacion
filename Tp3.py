@@ -83,10 +83,10 @@ plt.plot(QG_diag4[:,3], label="S4", color = "b")
 plt.plot(QG_diag5[:,3], label="S5", color = "purple")
 plt.plot(QG_diagx[:,3], label="S E.I", color = "violet")   #interesante resultado!! (esperable?? no hay friccion lateral)
 plt.plot(QG_diagx[:,3], label="S E.I 2", color = "black")  # practicamente identico al anterior
-plt.title("Energia Cinetica")
+plt.title("Energía Cinética")
 plt.grid()
 plt.xlabel("tiempo")
-plt.ylabel("Energia cinetica")
+plt.ylabel("Energía cinética")
 plt.legend(loc = "lower right")
 plt.savefig("energia_cin_EI.png",dpi=200)
 
@@ -141,7 +141,7 @@ for i in numx:
 vort_rel = (vort1, vort2, vort3, vort4, vort5, vortx, vortxx)
 num3 = (0, 1, 2, 3, 4, 5, 6)
 nombres_v = ("Vort_rel1", "Vort_rel2", "Vort_rel3", "Vort_rel4", "Vort_rel5", "vort_relx", "vort_relxx")
-Tit_v = ("Vort. rel. 1", "Vort. rel. 2", "Vort. rel. 3", "Vort. rel. 4", "Vort. rel. 5", "Vort rel. SEI", "Vort. rel. SEI2" )
+Tit_v = ("Vorticidad relativa 1", "Vorticidad relativa 2", "Vorticidad relativa 3", "Vorticidad relativa 4", "Vorticidad relativa 5", "Vorticidad relativa SEI", "Vorticidad relativa SEI2" )
 
 for i in num3:
     plt.figure()
@@ -180,7 +180,7 @@ f= np.flip(-beta*Y1)
 from numpy import empty
 vort_tot = empty([150,150,7]) #si se usa la simulacion x poner 6 en lugar de 5
 
-titulo_v=("vort_tot1","vort_tot2","vort_tot3","vort_tot4","vort_tot5","vort_totEI","vort_totEI2")
+titulo_v=("vorticidad total 1","vorticidad total 2","vorticidad total 3","vorticidad total 4","vorticidad total 5","vorticidad total EI","vorticidad total EI2")
 
 columnas = np.arange(0,150,1)
 
@@ -192,8 +192,8 @@ for i in num4:
     plt.colorbar()
     plt.contour(X1, Y1, vort_tot[:,:,i],  levels = 0, colors = "w" )
     plt.title(titulo_v[i])
-    plt.xlabel('longitud')
-    plt.ylabel('latitud')
+    plt.xlabel('Longitud[m]')
+    plt.ylabel('Latitud[m]')
     plt.xticks(np.arange(0, 1500000, 500000))
     plt.yticks(np.arange(0, 1500000, 250000))
     plt.savefig(titulo_v[i], dpi = 200)
@@ -277,3 +277,128 @@ for x in numx:
     plt.xticks(np.arange(0, 1500000, 250000))
     plt.savefig(nombres_x[x], dpi = 200)
        
+
+220
+             "S3":[round(cociente1[2], 2), round(cociente2[2], 2)],
+221
+             "S4":[round(cociente1[3], 2), round(cociente2[3], 2)],
+222
+             "S5":[round(cociente1[4], 2), round(cociente2[4], 2)],
+223
+             "S_EI":[round(cociente1[5], 2), round(cociente2[5], 2)],
+224
+             "S_EI2":[round(cociente1[6], 2), round(cociente2[6], 2)],}
+225
+                   
+226
+# ahora pasado a un dataframe, los caracteres pasan a las filas y columnas
+227
+cocientes = pd.DataFrame(data = cocientes)
+228
+cocientes.to_excel("cocientes.xls",index = False)
+229
+​
+230
+​
+231
+#las corrientes ya estan en sv
+232
+​
+233
+my1 = D*(np.diff(corriente1, n = 1, axis=1))
+234
+my2 = D*(np.diff(corriente2, n = 1, axis=1))
+235
+my3 = D*(np.diff(corriente3, n = 1, axis=1))
+236
+my4 = D*(np.diff(corriente4, n = 1, axis=1))
+237
+my5 = D*(np.diff(corriente5, n = 1, axis=1))
+238
+myx = D*(np.diff(corrientex, n = 1, axis=1))
+239
+myxx = D*(np.diff(corrientexx, n = 1, axis=1))
+240
+# campos de transporte meridional
+241
+​
+242
+​
+243
+my = (my1, my2, my3, my4, my5)
+244
+nombres = ("ej3_my1", "ej3_my2", "ej3_my3", "ej3_my4","ej3_my5")
+245
+titulo= ("My S1", "My S2", "My S3", "My S4", "My S5")
+246
+​
+247
+for x in num:
+248
+    plt.figure()                    
+249
+    plt.contourf(X1[0:149], Y1, my[x], levels = np.arange(-480,200,80), cmap = "jet")
+250
+    plt.colorbar(label = "[Sv]")
+251
+    plt.contour(X1[0:149], Y1, my[x],levels = 0, colors = "w")
+252
+    plt.title(titulo[x])
+253
+    plt.xlabel('Longitud')
+254
+    plt.ylabel('Latitud')
+255
+    plt.xticks(np.arange(0, 1500000, 500000))
+256
+    plt.xticks(np.arange(0, 1500000, 250000))
+257
+    plt.tight_layout()
+258
+    plt.savefig(nombres[x], dpi = 200)
+259
+    
+260
+# otra vez, las escalas para las simulaciones de escape inercial son muy distintas. 
+261
+    
+262
+myx = (myx,myxx)
+263
+nombres_x = ("ej3_myx", "ej3_myxx")
+264
+titulo_x= ("My SEI", "My SEI2")
+265
+​
+266
+# cambio cmap, porque no se nota nada sino.
+267
+​
+268
+for x in numx:
+269
+    plt.figure()                    
+270
+    plt.contourf(X1[0:149], Y1, myx[x], levels = np.arange(-1000,800,200), cmap = "jet")
+271
+    plt.colorbar(label = "[Sv]")
+272
+    plt.contour(X1[0:149], Y1, myx[x], levels = 0, colors = "w")
+273
+    plt.title(titulo_x[x])
+274
+    plt.xlabel('Longitud')
+275
+    plt.ylabel('Latitud')
+276
+    plt.xticks(np.arange(0, 1500000, 500000))
+277
+    plt.xticks(np.arange(0, 1500000, 250000))
+278
+    plt.savefig(nombres_x[x], dpi = 200)
+279
+       
+280
+​
+@mjbarboza
+Commit changes
