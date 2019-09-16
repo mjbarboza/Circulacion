@@ -49,7 +49,23 @@ plt.ylabel("Energía cinética")
 plt.legend()
 plt.savefig("energia_cin.png",dpi=200)
 
+energia1 = np.flip(QG_diag1[:,3],0) 
+energia2 = np.flip(QG_diag2[:,3],0)
+energia3 = np.flip(QG_diag3[:,3],0)
 
+energia = (energia1,energia2,energia3)
+num = np.arange(0,3,1)
+iteraciones = []
+iteraciones.extend([None]*5)
+
+for x in num:
+    i = 0 
+    dif_E = 0
+    while dif_E < 1:
+        dif_E = (np.abs((energia[x][0]-energia[x][i]))/energia[x][0])*100
+        i += 1 
+    iteraciones[x] = 10000 - i  # por mas que cuente desde 0, i vale uno mas que cuando se cumple la condiciones del while
+    print(iteraciones[x]) 
 # Funcion corriente
 escala = np.arange(-420000,60000,70000)
 corrientes = (corriente1,corriente2,corriente3)
